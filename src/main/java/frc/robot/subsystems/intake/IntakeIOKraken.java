@@ -1,17 +1,17 @@
-package frc.robot.subsystems.Kicker;
+package frc.robot.subsystems.Intake;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 
-public class KickerIOSparkMax implements KickerIO {
+public class IntakeIOKraken implements IntakeIO {
   private SparkMax m_motor;
 
-  public KickerIOSparkMax(int Port) {
+  public IntakeIOKraken(int Port) {
     m_motor = new SparkMax(Port, MotorType.kBrushed);
   }
 
   @Override
-  public void updateInputs(KickerInputs inputs) {
+  public void updateInputs(IntakeInputs inputs) {
     inputs.voltage = m_motor.getBusVoltage();
     inputs.current = m_motor.getOutputCurrent();
     inputs.output = m_motor.getAppliedOutput();
@@ -21,4 +21,10 @@ public class KickerIOSparkMax implements KickerIO {
   public void setVoltage(double volt) {
     m_motor.setVoltage(volt);
   }
+
+  @Override
+  public void setCurrentLimits(double supplyLimit) {}
+
+  @Override
+  public void setPIDFF(double kP, double kI, double kD, double kS) {}
 }

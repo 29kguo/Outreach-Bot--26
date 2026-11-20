@@ -15,21 +15,21 @@ public class Intake extends SubsystemBase {
 
   public static enum IntakeState {
     kIdle,
-    kSpinning,
+    kIntaking,
   }
 
   public Intake(IntakeIO intakeIO) {
     m_io = intakeIO;
     Map<IntakeState, Runnable> periodicHash = new HashMap<>();
     periodicHash.put(IntakeState.kIdle, this::idlePeriodic);
-    periodicHash.put(IntakeState.kSpinning, this::spinningPeriodic);
+    periodicHash.put(IntakeState.kIntaking, this::spinningPeriodic);
     m_profiles = new frc.robot.util.SubsystemProfiles<>(periodicHash, IntakeState.kIdle);
     if (Robot.isReal()) {
       m_io.setPIDFF(
-          IntakeConstants.kShooterP.get(),
-          IntakeConstants.kShooterI.get(),
-          IntakeConstants.kShooterD.get(),
-          IntakeConstants.kShooterKS.get());
+          IntakeConstants.kIntakeP.get(),
+          IntakeConstants.kIntakeI.get(),
+          IntakeConstants.kIntakeD.get(),
+          IntakeConstants.kIntakeKS.get());
     }
   }
 
@@ -47,7 +47,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void spinningPeriodic() {
-    m_io.setVoltage(IntakeConstants.kSpinningVoltage.get());
+    m_io.setVoltage(IntakeConstants.kIntakingVoltage.get());
   }
 
   public void updateState(IntakeState state) {

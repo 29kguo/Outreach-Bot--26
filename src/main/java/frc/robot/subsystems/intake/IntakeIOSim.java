@@ -2,7 +2,7 @@ package frc.robot.subsystems.Intake;
 
 import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
-import frc.robot.Constants.KickerConstants;
+import frc.robot.Constants.IntakeConstants;
 
 public class IntakeIOSim implements IntakeIO {
   private DCMotorSim m_sim;
@@ -12,8 +12,8 @@ public class IntakeIOSim implements IntakeIO {
 
     var plant =
         LinearSystemId.createDCMotorSystem(
-            KickerConstants.kSimGearbox, KickerConstants.kSimMOI, KickerConstants.kSimGearing);
-    m_sim = new DCMotorSim(plant, KickerConstants.kSimGearbox);
+            IntakeConstants.kSimGearbox, IntakeConstants.kSimMOI, IntakeConstants.kSimGearing);
+    m_sim = new DCMotorSim(plant, IntakeConstants.kSimGearbox);
   }
 
   @Override

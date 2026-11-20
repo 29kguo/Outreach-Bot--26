@@ -12,11 +12,12 @@ import frc.robot.subsystems.Drive.Drive;
 import frc.robot.subsystems.Drive.DriveIOCIM;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Intake.Intake.IntakeState;
+import frc.robot.subsystems.Shooter.Shoot;
+import frc.robot.subsystems.Shooter.KickerIOSim;
+import frc.robot.subsystems.Shooter.KickerIOSparkMax;
 import frc.robot.subsystems.Intake.IntakeIOSim;
 import frc.robot.subsystems.Intake.IntakeIOSparkMax;
-import frc.robot.subsystems.Kicker.Kicker;
-import frc.robot.subsystems.Kicker.KickerIOSim;
-import frc.robot.subsystems.Kicker.KickerIOSparkMax;
+
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 public class RobotContainer {
@@ -69,8 +70,8 @@ public class RobotContainer {
             Commands.runOnce(
                 () -> {
                   org.littletonrobotics.junction.Logger.recordOutput("Intake/fires", true);
-                  if (m_intake.getCurrentState() != Intake.IntakeState.kSpinning) {
-                    m_intake.updateState(IntakeState.kSpinning);
+                  if (m_intake.getCurrentState() != Intake.IntakeState.kIntaking) {
+                    m_intake.updateState(IntakeState.kIntaking);
                   } else {
                     m_intake.updateState(IntakeState.kIdle);
                   }
@@ -81,8 +82,8 @@ public class RobotContainer {
             Commands.runOnce(
                 () -> {
                   org.littletonrobotics.junction.Logger.recordOutput("shoot/fires", true);
-                  if (m_intake.getCurrentState() != Intake.IntakeState.kSpinning) {
-                    m_intake.updateState(IntakeState.kSpinning);
+                  if (m_intake.getCurrentState() != Intake.IntakeState.kIntaking) {
+                    m_intake.updateState(IntakeState.kIntaking);
                   } else {
                     m_intake.updateState(IntakeState.kIdle);
                   }

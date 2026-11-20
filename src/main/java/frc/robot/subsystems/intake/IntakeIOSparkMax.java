@@ -1,14 +1,14 @@
 package frc.robot.subsystems.Intake;
 
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
 
-public class IntakeIOSparkMax implements IntakeIO {
-  private SparkMax m_motor;
 
-  public IntakeIOSparkMax(int Port) {
-    m_motor = new SparkMax(Port, MotorType.kBrushed);
+public class IntakeIOKraken implements IntakeIO {
+  private TalonFX m_motor;
+
+  public IntakeIOKraken(int port, int encoder, CANBus bus){
+    m_motor = new TalonFX(port, MotorType.kBrushed);
   }
+
 
   @Override
   public void updateInputs(IntakeInputs inputs) {
